@@ -1,0 +1,53 @@
+
+
+#page-header {
+  background-color: #0d121f;
+  border-bottom: 2px solid #343843;
+  
+  height: 6.25rem;
+  padding: 0 8.75rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#page-header nav {
+  display: contents;
+}
+
+.header-nav-list {
+  display: flex;
+  gap: 2.81rem;
+}
+
+.header-nav-list li a {
+  color: #ffffff;
+  font-weight: 500;
+  position: relative;
+}
+
+.header-nav-list li a::after {
+  content: '';
+  background-color: #ffffff;
+
+  position: absolute;
+  bottom: -0.1rem;
+  left: 0;
+  height: 0.1rem;
+  width: 0%;
+
+  transition: 150ms all linear;
+}
+
+.header-nav-list li:hover a::after {
+  width: 100%;
+}
+
+.header-download {
+  color: #c3d4e9;
+}
+
+.header-login::after {
+  display: none;
+}
