@@ -44,10 +44,6 @@
   width: 100%;
 }
 
-.header-download {
-  color: #c3d4e9;
-}
-
 .header-login::after {
   display: none;
 }

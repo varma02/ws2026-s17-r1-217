@@ -23,6 +23,12 @@ html {
 .btn-primary, .btn-secondary {
   border-radius: 1000rem;
   padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: 100ms filter linear;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  filter: brightness(80%);
 }
 
 .btn-primary {
