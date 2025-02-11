@@ -20,6 +20,10 @@ html {
   border: none;
 }
 
+button {
+  background-color: transparent;
+}
+
 .btn-primary, .btn-secondary {
   border-radius: 1000rem;
   padding: 1rem 1.5rem;
