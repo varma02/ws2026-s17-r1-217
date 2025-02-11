@@ -88,11 +88,9 @@
   border-width: 0;
 }
 
-.hiw-search {
+#how-it-works figure > div {
   background-color: var(--bg-light);
   border-top-left-radius: 1rem;
-  bottom: 0;
-  right: 0;
   width: 85%;
   height: 85%;
   padding: 1.5rem;
@@ -156,4 +154,22 @@
 
 #how-it-works ol li:hover .blink {
   animation: 2s blink infinite;
+}
+
+.hiw-washer-first {
+  justify-content: center;
+  align-items: center;
+  color: var(--bg-primary);
+  gap: 0 !important;
+}
+
+@keyframes blink {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+#how-it-works ol li:hover .hiw-washer-first svg {
+  stroke-dasharray: 100;
+  animation: 10s blink linear infinite;
 }
