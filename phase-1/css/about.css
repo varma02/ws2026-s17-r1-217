@@ -4,7 +4,7 @@
   background-position: center;
   color: var(--text-dark);
 
-  height: 30rem;
+  min-height: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,4 +28,10 @@
   font-size: 1.2rem;
   text-align: center;
   line-height: 2rem;
+}
+
+@media (max-width: 64rem) {
+  #about p {
+    width: auto;
+  }
 }

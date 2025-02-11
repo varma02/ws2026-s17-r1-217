@@ -6,7 +6,7 @@ footer {
   align-items: center;
   padding: 1rem 10rem;
   position: relative;
-  height: 9.5rem;
+  min-height: 9.5rem;
   overflow: hidden;
 }
 
@@ -42,4 +42,33 @@ footer li a {
 footer p {
   font-size: 0.9rem;
   color: var(--text-light-secondary);
+}
+
+footer hr {
+  display: none;
+}
+
+@media (max-width: 64rem) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  footer ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  footer ul span {
+    display: none;
+  }
+  footer hr {
+    display: block;
+    height: 0.1rem;
+    width: 40%;
+    background-color: var(--border);
+  }
+  footer .center-circle {
+    display: none;
+  }
 }

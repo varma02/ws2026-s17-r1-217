@@ -2,7 +2,7 @@
   background-color: var(--bg-dark);
   color: var(--text-light);
 
-  height: 40rem;
+  min-height: 40rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -44,4 +44,25 @@
   border-top-left-radius: 3rem;
   border-top: 0.5rem solid var(--border);
   border-left: 0.5rem solid var(--border);
+}
+
+@media (max-width: 64rem) {
+  #download {
+    text-align: center;
+    align-items: center;
+  }
+  #download img {
+    width: 100%;
+  }
+  #download > img {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    border: 0.2rem solid var(--border);
+    margin-top: 1rem;
+  }
+  #download p {
+    width: auto;
+  }
 }

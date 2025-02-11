@@ -3,7 +3,7 @@
   color: var(--text-light);
 
   position: relative;
-  height: 38rem;
+  min-height: 38rem;
 
   display: flex;
   flex-direction: column;
@@ -98,4 +98,18 @@
 
 #hero .button-group {
   animation-delay: 600ms;
+}
+
+@media (max-width: 64rem) {
+  #hero h1 {
+    font-size: 2rem;
+  }
+  #hero p {
+    max-width: max-content;
+    font-size: 1.1rem;
+  }
+  #hero a {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
 }
