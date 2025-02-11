@@ -3,6 +3,18 @@
   src: url(../font/PlusJakartaSans-VariableFont_wght.ttf);
 }
 
+:root {
+  --bg-dark: #0d121f;
+  --bg-light: #ffffff;
+  --bg-primary: #3d81db;
+  --bg-secondary: #1a202c;
+  --border: #343843;
+  --text-dark: #040815;
+  --text-dark-secondary: #959eae;
+  --text-light: #ffffff;
+  --text-light-secondary: #90a3bf;
+}
+
 html {
   background-color: black;
 }
@@ -29,6 +41,8 @@ button {
   padding: 1rem 1.5rem;
   cursor: pointer;
   transition: 100ms filter linear;
+  color: var(--text-light);
+  font-weight: 600;
 }
 
 .btn-primary:hover, .btn-secondary:hover {
@@ -36,9 +50,14 @@ button {
 }
 
 .btn-primary {
-  background-color: #3d81db;
+  background-color: var(--bg-primary);
 }
 
 .btn-secondary {
-  background-color: #1a202c;
+  background-color: var(--bg-secondary);
+}
+
+.button-group {
+  display: flex;
+  gap: 1.5rem;
 }

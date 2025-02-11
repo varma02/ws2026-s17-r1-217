@@ -1,11 +1,14 @@
 
 
 #page-header {
-  background-color: #0d121f;
-  border-bottom: 2px solid #343843;
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border);
   
   height: 6.25rem;
   padding: 0 8.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 96;
 
   display: flex;
   align-items: center;
@@ -30,14 +33,14 @@
 }
 
 .header-nav-list li a {
-  color: #ffffff;
+  color: var(--text-light);
   font-weight: 500;
   position: relative;
 }
 
 .header-nav-list li a::after {
   content: '';
-  background-color: #ffffff;
+  background-color: var(--text-light);
 
   position: absolute;
   bottom: -0.1rem;
@@ -90,7 +93,7 @@
   #page-header nav hr {
     display: block;
     height: 0.1rem;
-    background-color: #343843;
+    background-color: var(--border);
   }
 
   #page-header nav {
