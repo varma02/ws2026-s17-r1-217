@@ -1,0 +1,45 @@
+footer {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 10rem;
+  position: relative;
+  height: 9.5rem;
+  overflow: hidden;
+}
+
+footer * {
+  z-index: 2;
+}
+
+footer .center-circle {
+  position: absolute;
+  border-radius: 1000rem;
+  border-color: #191e2a;
+  border-width: 5rem;
+  border-style: solid;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 85%);
+  padding: 20rem;
+  z-index: 1;
+}
+
+footer ul {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--border);
+}
+
+footer li a {
+  color: var(--bg-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+footer p {
+  font-size: 0.9rem;
+  color: var(--text-light-secondary);
+}
