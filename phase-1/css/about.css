@@ -4,7 +4,7 @@
   background-position: center;
   color: var(--text-dark);
 
-  height: 28.75rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@
 }
 
 #about h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
 }
 
@@ -27,5 +27,5 @@
   width: 60%;
   font-size: 1.2rem;
   text-align: center;
-  line-height: 1.5rem;
+  line-height: 2rem;
 }
