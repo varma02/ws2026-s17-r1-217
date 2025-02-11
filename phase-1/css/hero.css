@@ -26,7 +26,7 @@
 
 #hero p {
   color: var(--text-light-secondary);
-  max-width: 60vw;
+  max-width: 60%;
   font-size: 1.3rem;
   text-align: center;
 }

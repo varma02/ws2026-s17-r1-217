@@ -1,0 +1,31 @@
+#about {
+  background-color: var(--bg-light);
+  background-image: url(../images/laundromat-with-girl-legs.png);
+  background-position: center;
+  color: var(--text-dark);
+
+  height: 28.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#about h3 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: var(--bg-primary);
+}
+
+#about h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+#about p {
+  width: 60%;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.5rem;
+}
