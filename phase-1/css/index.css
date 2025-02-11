@@ -37,6 +37,10 @@ button {
   background-color: transparent;
 }
 
+section {
+  scroll-margin: 6rem;
+}
+
 .btn-primary, .btn-secondary {
   border-radius: 1000rem;
   padding: 1rem 1.5rem;
