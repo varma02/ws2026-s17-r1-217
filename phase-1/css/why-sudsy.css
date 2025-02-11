@@ -1,0 +1,66 @@
+#why-sudsy {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#why-sudsy h3 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: var(--bg-primary);
+}
+
+#why-sudsy h2 {
+  font-size: 2.5rem;
+}
+
+#why-sudsy > p {
+  width: 50%;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 2rem;
+  color: var(--text-dark-secondary);
+}
+
+#why-sudsy img {
+  padding: 0.7rem;
+  height: max-content;
+  width: max-content;
+  border-radius: 0.5rem;
+  background-color: var(--bg-primary);
+}
+
+#why-sudsy ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 65%;
+  gap: 3rem;
+  margin: 2rem 0;
+}
+
+#why-sudsy ul li {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+#why-sudsy ul li div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#why-sudsy ul li h4 {
+  font-size: 1.5rem;
+}
+
+#why-sudsy ul li p {
+  color: var(--text-dark-secondary);
+  font-weight: 500;
+}
