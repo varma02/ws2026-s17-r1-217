@@ -63,6 +63,10 @@
   display: none;
 }
 
+#header-bg-blur {
+  display: none;
+}
+
 @media (max-width: 64rem) {
   #page-header {
     height: 4rem;
@@ -142,7 +146,7 @@
   }
 
   #page-header label:has(input:checked) ~ nav {
-    right: 0;
+    right: -1px;
   }
 
   #page-header label:has(input:checked) ~ #header-bg-blur {
