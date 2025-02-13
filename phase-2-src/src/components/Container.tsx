@@ -2,12 +2,12 @@ import React from 'react';
 
 type Props = {
   step: number,
-  setStep: React.Dispatch<React.SetStateAction<number>>,
+  onSubmit: React.FormEventHandler<HTMLFormElement>,
   children: React.ReactNode,
 }
 
 export default function Container(
-  { step, setStep, children }: Props
+  { step, onSubmit, children }: Props
 ) {
 
   const containerRef = React.useRef<any>(undefined)
@@ -22,13 +22,15 @@ export default function Container(
   }
 
   return (
-    <article className="container" ref={containerRef}>
+    <form className="container" ref={containerRef} onSubmit={onSubmit}>
       <header className="header">
         <h1>Register a new location</h1>
         <div className="steps">
           {Array.from({length: 4}).map((_, i) => (
             <div key={i} style={{display: 'contents'}}>
-              <button className={`step ${i < step && 'done'} ${i == step && 'current'}`}>
+              <button className={`step ${i < step && 'done'} ${i == step && 'current'}`}
+              aria-label={`Select step ${i+1}`} data-step={i} type='submit'
+              disabled={step == 3 || i+1 > step}>
                 {step == 3 ? (
                   <img src="check.svg" alt="Check" />
                 ) : i+1}
@@ -37,17 +39,23 @@ export default function Container(
             </div>
           ))}
         </div>
-        <button className="fullscreen-btn" onClick={handleFullscreen}>
+        <button className="fullscreen-btn" onClick={handleFullscreen} type='button'>
           <img src="maximize.svg" alt="Maximize" />
         </button>
       </header>
       <main className="main">
         {children}
       </main>
-      <footer className="footer">
-        <button className="btn" disabled>Back</button>
-        <button className="btn">Next</button>
-      </footer>
-    </article>
+      {step < 3 && (
+        <footer className="footer">
+          <button className="btn" disabled={step == 0} type='submit' data-step='back'>
+            Back
+          </button>
+          <button className="btn" type='submit' data-step='next'>
+            Next
+          </button>
+        </footer>
+      )}
+    </form>
   )
 }
