@@ -59,7 +59,7 @@
   display: none;
 }
 
-#page-header label {
+#header-open-menu-label {
   display: none;
 }
 
@@ -127,7 +127,7 @@
     backdrop-filter: blur(0.2rem);
   }
 
-  #page-header label {
+  #header-open-menu-label {
     display: block;
     position: relative;
     z-index: 99;
@@ -145,16 +145,16 @@
     opacity: 0;
   }
 
-  #page-header label:has(input:checked) ~ nav {
+  #header-open-menu-label:has(input:checked) ~ nav {
     right: -1px;
   }
 
-  #page-header label:has(input:checked) ~ #header-bg-blur {
+  #header-open-menu-label:has(input:checked) ~ #header-bg-blur {
     z-index: 97;
     display: block;
   }
 
-  #page-header label:has(input:checked) {
+  #header-open-menu-label:has(input:checked) {
     top: 1rem;
     right: 1.5rem;
   }
