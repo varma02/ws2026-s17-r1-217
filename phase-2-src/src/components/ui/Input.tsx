@@ -2,19 +2,18 @@ import React from "react"
 
 type Props = {
   label: string,
-  placeholder?: string,
-  type?: "text" | "number" | "time",
   name?: string,
   id?: string,
-}
+} & React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 export default function Input(
-  { label, placeholder = "", type = "text", name = label, id = name }: Props
+  { label, name = label, id = name, ...props }: Props
 ) {
+  if (!props.type) props.type = "text"
   return (
     <div className="input-group">
       <label htmlFor={id}>{label}</label>
-      <input type={type} id={id} name={name} placeholder={placeholder} />
+      <input id={id} name={name} {...props} autoComplete="off" />
     </div>
   )
 }
