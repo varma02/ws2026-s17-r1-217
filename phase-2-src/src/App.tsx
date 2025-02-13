@@ -1,19 +1,14 @@
-import React, { useState } from "react"
-import Header from "./Header"
+import React from "react"
+import Container from "./components/Container"
 
 function App() {
-  const containerRef = React.useRef<any>(undefined)
+  
+  const [step, setStep] = React.useState(0)
+
   return (
-    <article className="container" ref={containerRef}>
-      <Header step={0} fullscreenElement={containerRef} />
-      <main className="main">
-        main
-      </main>
-      <footer className="footer">
-        <button className="btn" disabled>Back</button>
-        <button className="btn">Next</button>
-      </footer>
-    </article>
+    <Container step={step} setStep={setStep}>
+      asd
+    </Container>
   )
 }
 
