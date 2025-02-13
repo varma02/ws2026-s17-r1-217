@@ -2,12 +2,11 @@ import React from 'react';
 
 type Props = {
   step: number,
-  onSubmit: React.FormEventHandler<HTMLFormElement>,
   children: React.ReactNode,
-}
+} & React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
 
 export default function Container(
-  { step, onSubmit, children }: Props
+  { step, children, ...props }: Props
 ) {
 
   const containerRef = React.useRef<any>(undefined)
@@ -22,7 +21,7 @@ export default function Container(
   }
 
   return (
-    <form className="container" ref={containerRef} onSubmit={onSubmit}>
+    <form className="container" ref={containerRef} {...props}>
       <header className="header">
         <h1>Register a new location</h1>
         <div className="steps">

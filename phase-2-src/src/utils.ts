@@ -6,13 +6,16 @@ export type GeneralInfo = {
   address: string,
   from: string,
   to: string,
-  openAt: "Every Day" | "Weekdays" | "Weekends",
+  openAt: string,
+}
+
+export type Extras = {
   freeWiFi: boolean,
   accessibleEntry: boolean,
   loungeArea: boolean,
   backgroundMusic: true,
   customerService: false,
-  parking: "Easy" | "Medium" | "Hard",
+  parking: string,
 }
 
 export type Floorplan = (
