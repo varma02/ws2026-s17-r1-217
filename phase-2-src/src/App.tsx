@@ -3,7 +3,7 @@ import Container from "./components/Container"
 import Input from "./components/ui/Input"
 import TextArea from "./components/ui/TextArea"
 import Select from "./components/ui/Select"
-import { validateFloorplan, validateGeneralInfo } from "./utils"
+import { usePersistedState, validateFloorplan, validateGeneralInfo } from "./utils"
 import FloorplanDesigner from "./components/FloorplanDesigner"
 import Radio from "./components/ui/Radio"
 import Checkbox from "./components/ui/Checkbox"
@@ -15,10 +15,10 @@ function getStartingFloorplan() {
 }
 
 function App() {
-  const [step, setStep] = React.useState(0)
-  const [errors, setErrors] = React.useState<string[]>([])
-  const [formState, setFormState] = React.useState<{[key: string] : any}>({})
-  const [floorplan, setFloorplan] = React.useState<string[][]>(getStartingFloorplan())
+  const [step, setStep] = usePersistedState<number>("step", 0)
+  const [errors, setErrors] = usePersistedState<string[]>("errors", [])
+  const [formState, setFormState] = usePersistedState<{[key: string] : any}>("formState", {})
+  const [floorplan, setFloorplan] = usePersistedState<string[][]>("floorplan", getStartingFloorplan())
 
   function getCurrentFormData(form: HTMLFormElement) {
     const formdata = new FormData(form)
