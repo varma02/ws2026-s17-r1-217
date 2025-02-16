@@ -18,16 +18,6 @@ export type Extras = {
   parking: string,
 }
 
-export type Floorplan = (
-  "Washer (8 kg)" |
-  "Washer (11 kg)" |
-  "Dryer (18 kg)" |
-  "Dryer (25 kg)" |
-  "Folding Table" |
-  "Waiting Area" |
-  "Wall" | "-"
-)[][]
-
 export function validateGeneralInfo(d: GeneralInfo): string[] {
   const invalid: string[] = []
   if (!d.name?.match(/^.{3,32}$/g)) invalid.push("name")
@@ -41,7 +31,7 @@ export function validateGeneralInfo(d: GeneralInfo): string[] {
   return invalid
 }
 
-export function validateFloorplan(d: Floorplan): boolean {
+export function validateFloorplan(d: string[][]): boolean {
   return (
     d.length == 6 && d.every((v) => v.length == 5) &&
     d.every((yv, yi) => yv.every((xv, xi) => (

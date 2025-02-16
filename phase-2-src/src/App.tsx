@@ -3,14 +3,21 @@ import Container from "./components/Container"
 import Input from "./components/ui/Input"
 import TextArea from "./components/ui/TextArea"
 import Select from "./components/ui/Select"
-import { validateGeneralInfo } from "./utils"
+import { validateFloorplan, validateGeneralInfo } from "./utils"
+import FloorplanDesigner from "./components/FloorplanDesigner"
+
+const GRID_SIZE_X = 6
+const GRID_SIZE_Y = 5
 
 function App() {
   const [step, setStep] = React.useState(0)
   const [errors, setErrors] = React.useState<string[]>([])
   const [formState, setFormState] = React.useState<{[key: string] : any}>({})
+  const [floorplan, setFloorplan] = React.useState<string[][]>(
+    Array.from({length:GRID_SIZE_X}).fill(Array.from({length:GRID_SIZE_Y}).fill("-")) as any
+  )
 
-  function getCurrentFormState(form: HTMLFormElement) {
+  function getCurrentFormData(form: HTMLFormElement) {
     const formdata = new FormData(form)
     let invalid: string[] = []
     let state: any = {}
@@ -26,6 +33,11 @@ function App() {
         to: formdata.get("to")?.toString() || "",
       }
       invalid = validateGeneralInfo(state)
+    } else if (step == 1) {
+      invalid = validateFloorplan(floorplan) ? [] : ["floorplan"]
+      state = floorplan
+    } else if (step == 2) {
+
     }
     return {
       invalid: invalid,
@@ -38,9 +50,10 @@ function App() {
     const action = (event.nativeEvent as SubmitEvent).submitter?.dataset?.step
     if (action) {
       if (action == "next") {
-        const { invalid, state } = getCurrentFormState(event.target as HTMLFormElement)
+        const { invalid, state } = getCurrentFormData(event.target as HTMLFormElement)
         if (invalid.length) {
           setErrors(invalid)
+          document.getElementsByName(invalid[0])[0]?.focus()
         } else {
           setFormState((o) => ({...o, ...state}))
           setStep((o) => o+1)
@@ -55,7 +68,7 @@ function App() {
 
   function handleInput(event: React.FormEvent<HTMLFormElement>) {
     if (errors.length) {
-      const { invalid } = getCurrentFormState((event.target as any).form)
+      const { invalid } = getCurrentFormData((event.target as any).form)
       setErrors(invalid)
     }
   }
@@ -91,6 +104,9 @@ function App() {
           isError={errors.includes("to")} errorMessage="Required"/>
         </div>
       </>)}
+      {step === 1 && (
+        <FloorplanDesigner floorplan={floorplan} setFloorplan={setFloorplan} isError={!!errors.length} />
+      )}
     </Container>
   )
 }
