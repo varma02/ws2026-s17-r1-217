@@ -25,14 +25,35 @@ export default function FloorplanDesigner(
     event.dataTransfer.setData("type", event.target.dataset.type)
   }
   
+  function addToFloorplan(tx: number, ty: number, type: string) {
+    setFloorplan(o => (
+      o.map((arr, x) => arr.map((v, y) => x == tx && y == ty ? type  : v))
+    ))
+  }
+
   function drop(event:any) {
     event.preventDefault();
     const type = event.dataTransfer.getData("type")
-    const {x: targetx, y: targety} = event.target.dataset
-    setFloorplan(o => (
-      o.map((arr, x) => arr.map((v, y) => x == targetx && y == targety ? type  : v))
-    ))
+    const {x, y} = event.target.dataset
+    addToFloorplan(x, y, type)
     dragLeave(event)
+  }
+
+  function click(event:any) {
+    const {x, y} = event.target.dataset
+    if (event.button == 0) {
+      addToFloorplan(x, y, "-")
+    } else if (event.button == 2) {
+      event.preventDefault()
+      addToFloorplan(x, y, "Entrance")
+    }
+  }
+
+  function doubleClick(event:any) {
+    if (event.button == 0) {
+      const {x, y} = event.target.dataset
+      addToFloorplan(x, y, "Wall")
+    }
   }
 
   function dragOver(event:any) {
@@ -64,7 +85,7 @@ export default function FloorplanDesigner(
       <div className="grid">
         {floorplan.map((arr, x) => arr.map((v, y) => (
           <div key={(x+1)*y} data-x={x} data-y={y} className={`grid-item ${items[v].class}`}
-          onDrop={drop} onDragOver={dragOver} onDragLeave={dragLeave}>
+          onDrop={drop} onDragOver={dragOver} onDragLeave={dragLeave} onClick={click} onDoubleClick={doubleClick} onContextMenu={click}>
             {items[v].img && <img src={items[v].img} alt={items[v].txt} />}
             {items[v].txt && <span>{items[v].txt}</span>}
           </div>
