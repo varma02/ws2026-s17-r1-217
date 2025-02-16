@@ -59,7 +59,7 @@ footer hr {
     flex-direction: column;
     gap: 1rem;
   }
-  footer ul span {
+  footer ul .separator {
     display: none;
   }
   footer hr {
