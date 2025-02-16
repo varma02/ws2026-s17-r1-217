@@ -5,17 +5,20 @@ import TextArea from "./components/ui/TextArea"
 import Select from "./components/ui/Select"
 import { validateFloorplan, validateGeneralInfo } from "./utils"
 import FloorplanDesigner from "./components/FloorplanDesigner"
+import Radio from "./components/ui/Radio"
+import Checkbox from "./components/ui/Checkbox"
 
 const GRID_SIZE_X = 6
 const GRID_SIZE_Y = 5
+function getStartingFloorplan() {
+  return Array.from({length:GRID_SIZE_X}).fill(Array.from({length:GRID_SIZE_Y}).fill("-")) as any
+}
 
 function App() {
   const [step, setStep] = React.useState(0)
   const [errors, setErrors] = React.useState<string[]>([])
   const [formState, setFormState] = React.useState<{[key: string] : any}>({})
-  const [floorplan, setFloorplan] = React.useState<string[][]>(
-    Array.from({length:GRID_SIZE_X}).fill(Array.from({length:GRID_SIZE_Y}).fill("-")) as any
-  )
+  const [floorplan, setFloorplan] = React.useState<string[][]>(getStartingFloorplan())
 
   function getCurrentFormData(form: HTMLFormElement) {
     const formdata = new FormData(form)
@@ -35,9 +38,15 @@ function App() {
       invalid = validateGeneralInfo(state)
     } else if (step == 1) {
       invalid = validateFloorplan(floorplan) ? [] : ["floorplan"]
-      state = floorplan
     } else if (step == 2) {
-
+      state = {
+        freeWiFi: !!formdata.get("freeWiFi"),
+        accessibleEntry: !!formdata.get("accessibleEntry"),
+        loungeArea: !!formdata.get("loungeArea"),
+        backgroundMusic: !!formdata.get("backgroundMusic"),
+        customerService: !!formdata.get("customerService"),
+        parking: formdata.get("parking"),
+      }
     }
     return {
       invalid: invalid,
@@ -73,6 +82,21 @@ function App() {
     }
   }
 
+  function reset() {
+    setStep(0)
+    setErrors([])
+    setFormState({})
+    setFloorplan(getStartingFloorplan())
+  }
+
+  function getFloorplanURL() {
+    return window.URL.createObjectURL(new Blob([floorplan.map((arr) => arr.join(",")).join("\n")], {type: 'text/csv'}))
+  }
+
+  function copyFormState() {
+    navigator.clipboard.writeText(JSON.stringify(formState))
+  }
+
   return (
     <Container step={step} onSubmit={handleStep} onInput={handleInput}>
       {step === 0 && (<>
@@ -106,6 +130,37 @@ function App() {
       </>)}
       {step === 1 && (
         <FloorplanDesigner floorplan={floorplan} setFloorplan={setFloorplan} isError={!!errors.length} />
+      )}
+      {step == 2 && (<>
+        <h2>Amenities and Services</h2>
+        <Checkbox label="Free Wi-Fi" name="freeWiFi" />
+        <Checkbox label="Accessible entry" name="accessibleEntry" />
+        <Checkbox label="LoungeArea" name="loungeArea" />
+        <Checkbox label="Background Music" name="backgroundMusic" />
+        <Checkbox label="Personal customer service" name="customerService" />
+        <hr />
+        <h3>Parking</h3>
+        <div className="input-row">
+          <Radio label="Easy" value="Easy" name="parking" id="parking-easy" defaultChecked/>
+          <Radio label="Medium" value="Medium" name="parking" id="parking-medium"/>
+          <Radio label="Hard" value="Hard" name="parking" id="parking-hard"/>
+        </div>
+      </>)}
+      {step == 3 && (
+        <div className="step-4-screen">
+          <h2>Successful submission!</h2>
+          <p>Thank you for the new location registration!</p>
+          <button className="btn" type='button' onClick={copyFormState}>
+            Copy form values
+          </button>
+          <a className="btn" type='button' download="floorplan.csv" href={getFloorplanURL()}>
+            Export floorplan
+          </a>
+          <hr />
+          <button className="btn" type='button' onClick={reset}>
+            Start over
+          </button>
+        </div>
       )}
     </Container>
   )
