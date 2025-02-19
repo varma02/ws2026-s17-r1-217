@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Container from "./components/Container"
 import Input from "./components/ui/Input"
 import TextArea from "./components/ui/TextArea"
@@ -7,9 +7,8 @@ import { usePersistedState, validateFloorplan, validateGeneralInfo } from "./uti
 import FloorplanDesigner from "./components/FloorplanDesigner"
 import Radio from "./components/ui/Radio"
 import Checkbox from "./components/ui/Checkbox"
+import { GRID_SIZE_X, GRID_SIZE_Y } from "./constant"
 
-const GRID_SIZE_X = 6
-const GRID_SIZE_Y = 5
 function getStartingFloorplan() {
   return Array.from({length:GRID_SIZE_X}).fill(Array.from({length:GRID_SIZE_Y}).fill("-")) as any
 }
@@ -75,11 +74,14 @@ function App() {
     }
   }
 
-  function handleInput(event: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => handleInput(), [floorplan])
+
+  function handleInput(event?: React.FormEvent<HTMLFormElement>) {
+    const { state, invalid } = getCurrentFormData((event?.target as any)?.form)
     if (errors.length) {
-      const { invalid } = getCurrentFormData((event.target as any).form)
       setErrors(invalid)
     }
+    setFormState((o) => ({...o, ...state}))
   }
 
   function reset() {
@@ -106,7 +108,7 @@ function App() {
         <TextArea label="Description" name="description" defaultValue={formState['description']}
         isError={errors.includes("description")} errorMessage="Required, 10 - 256 characters"/>
         <div className="input-row">
-          <Input label="Postal code" name="postalCode" defaultValue={formState['postalCode']}
+          <Input label="Postal code" name="postalCode" defaultValue={formState['postalCode'] || ""}
           isError={errors.includes("postalCode")} errorMessage="Required, 4 numeric characters"/>
           <Input label="City" name="city" defaultValue={formState['city']}
           isError={errors.includes("city")} errorMessage="Required, 3 - 32 characters"/>

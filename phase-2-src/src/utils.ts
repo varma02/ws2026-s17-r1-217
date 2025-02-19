@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { GRID_SIZE_X, GRID_SIZE_Y } from "./constant"
 
 export type GeneralInfo = {
   name: string,
@@ -35,7 +36,7 @@ export function validateGeneralInfo(d: GeneralInfo): string[] {
 
 export function validateFloorplan(d: string[][]): boolean {
   return (
-    d.length == 6 && d.every((v) => v.length == 5) &&
+    d.length == GRID_SIZE_X && d.every((v) => v.length == GRID_SIZE_Y) &&
     d.every((yv, yi) => yv.every((xv, xi) => (
       xv.includes("Washer") || xv.includes("Dryer") ? (
         (yi == 0 || yi == 5) ||
