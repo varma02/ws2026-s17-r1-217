@@ -203,4 +203,11 @@
   #how-it-works ol {
     flex-direction: column;
   }
+  #how-it-works > p {
+    margin-bottom: 0;
+    width: max-content;
+  }
+  #how-it-works .button-group {
+    padding-bottom: 1rem;
+  }
 }

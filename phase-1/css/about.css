@@ -1,7 +1,9 @@
 #about {
   background-color: var(--bg-light);
   background-image: url(../images/laundromat-with-girl-legs.png);
+  background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   color: var(--text-dark);
 
   min-height: 30rem;
@@ -33,5 +35,6 @@
 @media (max-width: 64rem) {
   #about p {
     width: auto;
+    padding-bottom: 1rem;
   }
 }

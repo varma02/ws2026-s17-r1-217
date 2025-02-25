@@ -101,6 +101,7 @@
 }
 
 @media (max-width: 64rem) {
+  
   #hero h1 {
     font-size: 2rem;
   }
