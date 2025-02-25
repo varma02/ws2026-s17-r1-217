@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Container from "./components/Container"
 import Input from "./components/ui/Input"
 import TextArea from "./components/ui/TextArea"
@@ -75,9 +75,16 @@ function App() {
   }
 
   useEffect(() => handleInput(), [floorplan])
-
+  const [firstHandleInput, setFirstHandleInput] = useState(true)
   function handleInput(event?: React.FormEvent<HTMLFormElement>) {
+    // this fixes the form resetting after multiple refreshes
+    if (firstHandleInput) {
+      setFirstHandleInput(false)
+      return
+    }
+    
     const { state, invalid } = getCurrentFormData((event?.target as any)?.form)
+    console.log("inputevent", state)
     if (errors.length) {
       setErrors(invalid)
     }
@@ -135,17 +142,17 @@ function App() {
       )}
       {step == 2 && (<>
         <h2>Amenities and Services</h2>
-        <Checkbox label="Free Wi-Fi" name="freeWiFi" />
-        <Checkbox label="Accessible entry" name="accessibleEntry" />
-        <Checkbox label="LoungeArea" name="loungeArea" />
-        <Checkbox label="Background Music" name="backgroundMusic" />
-        <Checkbox label="Personal customer service" name="customerService" />
+        <Checkbox label="Free Wi-Fi" name="freeWiFi" defaultChecked={formState['freeWiFi']} />
+        <Checkbox label="Accessible entry" name="accessibleEntry" defaultChecked={formState['accessibleEntry']} />
+        <Checkbox label="LoungeArea" name="loungeArea" defaultChecked={formState['loungeArea']} />
+        <Checkbox label="Background Music" name="backgroundMusic" defaultChecked={formState['backgroundMusic']} />
+        <Checkbox label="Personal customer service" name="customerService" defaultChecked={formState['customerService']} />
         <hr />
         <h3>Parking</h3>
         <div className="input-row">
-          <Radio label="Easy" value="Easy" name="parking" id="parking-easy" defaultChecked/>
-          <Radio label="Medium" value="Medium" name="parking" id="parking-medium"/>
-          <Radio label="Hard" value="Hard" name="parking" id="parking-hard"/>
+          <Radio label="Easy" value="Easy" name="parking" id="parking-easy" defaultChecked={formState['parking'] == 'Easy' || !formState['parking']} />
+          <Radio label="Medium" value="Medium" name="parking" id="parking-medium" defaultChecked={formState['parking'] == 'Medium'} />
+          <Radio label="Hard" value="Hard" name="parking" id="parking-hard" defaultChecked={formState['parking'] == 'Hard'} />
         </div>
       </>)}
       {step == 3 && (
