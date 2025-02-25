@@ -1,18 +1,21 @@
-
-
 #page-header {
-  background-color: var(--bg-dark);
-  border-bottom: 1px solid var(--border);
-  
-  height: 6.25rem;
-  padding: 0 8.75rem;
   position: sticky;
   top: 0;
   z-index: 96;
-
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border);
+  height: 6.25rem;
+  padding: 0 8.75rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+#page-header > div {
+  display: flex;
   justify-content: space-between;
+  max-width: 2048px;
+  width: 100%;
 }
 
 #page-header nav {

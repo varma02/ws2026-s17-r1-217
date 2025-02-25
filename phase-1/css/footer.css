@@ -2,12 +2,20 @@ footer {
   background-color: var(--bg-dark);
   color: var(--text-light);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 10rem;
   position: relative;
   min-height: 9.5rem;
   overflow: hidden;
+}
+
+footer > div {
+  padding: 1rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 2048px;
 }
 
 footer * {
@@ -49,7 +57,7 @@ footer hr {
 }
 
 @media (max-width: 64rem) {
-  footer {
+  footer > div {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
